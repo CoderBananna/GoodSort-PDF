@@ -1,0 +1,51 @@
+PASS Year inference handles filenames, folders and combined classes
+PASS Year normalization prevents unsafe output names
+PASS Each year gets its own newsletters followed by all notices
+PASS Invalid terms, reversed weeks, duplicates and missing sources are rejected
+PASS Prep filenames omit Year while numbered years retain it
+PASS Merged page sizes, order and colour drawing commands are preserved
+PASS Web and email links survive with their exact destinations
+PASS Direct, named and legacy internal links point to the correct inserted page
+PASS PNG becomes a proportionate A4 page
+PASS A4 portrait image keeps orientation, proportions, full resolution and all four edges
+PASS A4 landscape image keeps orientation, proportions, full resolution and all four edges
+PASS A4 panorama image keeps orientation, proportions, full resolution and all four edges
+PASS A4 tall image keeps orientation, proportions, full resolution and all four edges
+PASS A4 square image keeps orientation, proportions, full resolution and all four edges
+PASS Batch outputs share notices and keep originals intact
+PASS Conversion failure produces no partial batch
+PASS Existing PDFs are never overwritten
+PASS Cancellation publishes nothing and removes temporary files
+PASS Shared Office notice is converted only once per batch
+PASS Protected PDFs fail clearly without modifying the original
+PASS Lossless compression preserves external and internal hyperlinks
+PASS PDFs below 10 MB never enter lossy compression
+PASS Cancelled compression leaves its input untouched
+PASS Oversized images are sized for their largest page placement, with a bounded quality floor
+PASS Bulk mode creates one PDF per source without notices or year labels
+PASS Bulk mode appends every optional file to each output in order
+PASS Filename variables share the job timestamp and follow displayed file order
+PASS Combine mode preserves displayed order and appends extras once
+PASS Bulk name collisions are resolved without taking another source's natural name
+PASS Invalid variables, unsafe paths and reserved Windows output names are rejected
+PASS New modes reject duplicate, missing and unsupported inputs before conversion
+PASS Bulk conversion without append runs conversion and compression and keeps the original
+PASS Bulk outputs share converted appended files and retain their ending page order
+PASS Combine job creates one PDF in chosen order and preserves links
+PASS Bulk mode never overwrites existing outputs and publishes no partial batch
+PASS Weekly naming uses a single week and preserves school prefixes
+PASS Custom issues work without term/week values and keep group order
+PASS Custom names reject invalid Windows names and empty issue labels
+PASS Custom group matching prefers filenames and specific whole names
+PASS Custom group list removes duplicates and preserves user spelling
+PASS Custom group newsletters also support fortnightly and weekly filenames
+PASS Arranging pages preserves vectors, dimensions and source bytes with duplicates
+PASS Reordered and duplicated pages retain external and remapped internal links
+PASS Links to removed pages are omitted while web links remain
+PASS Page arrangement rejects empty selections and invalid page indices
+PASS Arranged saving never overwrites and cancelled saves leave no output
+PASS Printing 10,000 outputs stays sequential and waits for capacity before each submission
+PASS Print failure stops without retrying or altering saved PDFs
+PASS Cancelling while the print queue is full submits no further files
+PASS Cancelled print batches do not contact the spooler
+50/50 passed

@@ -1,0 +1,27 @@
+{
+  "Version": "1.2.0",
+  "Passed": 21,
+  "Checks": [
+    "Newsletter mode keeps term/week controls",
+    "Bulk mode hides term/week controls",
+    "Bulk mode hides year fields for already loaded files",
+    "Bulk mode enables conversion without year labels",
+    "Move-up control changes displayed file order",
+    "Bulk filename variables follow displayed order",
+    "Bulk appends optional document to each PDF",
+    "Windows bulk conversion creates two PDFs",
+    "Landscape image is fitted to A4 before appended page",
+    "Appended hyperlink survives native conversion and compression",
+    "Portrait image keeps its orientation",
+    "Combine mode offers one output filename",
+    "Combine mode retains chosen order and appends once",
+    "Windows combined output follows landscape, portrait, appendix order",
+    "Returning to newsletters restores year controls and edited Prep assignment",
+    "Bulk mode works with empty append column",
+    "Windows bulk conversion without append creates standalone PDFs",
+    "Invalid filename variable disables GO",
+    "Valid filename re-enables GO",
+    "Empty primary file list disables GO",
+    "Files added in bulk mode acquire a year suggestion when needed"
+  ]
+}

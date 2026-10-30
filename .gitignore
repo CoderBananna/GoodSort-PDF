@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+dist/
+test-output/
+.vs/
+*.user
+*.zip
+build-verification.json
+test-results.txt
+
+.private-backups/
