@@ -1,5 +1,7 @@
 # Changelog
 
+- **1.5.1 (not yet published as a GitHub binary):** Fixed PowerPoint PDF export failing with “Could not convert argument 7 for call to ExportAsFixedFormat”. Project GPLv3 licence included in About.
+
 - **1.5.0:** Optional printing after saving in every mode, with one printer selection per batch, sequential background spooling, cancellation and preserved saved PDFs on print failure. Large folders import in one list update.
 
 - **1.4.4:** Arrange pages groups the checkbox and page-count summary beside GO, with correct singular wording for one page.

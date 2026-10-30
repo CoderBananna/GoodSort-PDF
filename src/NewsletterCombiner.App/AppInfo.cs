@@ -41,6 +41,10 @@ public static class AppInfo
         Bulk convert and Combine all grew from the same need: turn mixed files into separate PDFs, or arrange them into one document, with optional material appended and flexible filenames. The name GoodSort PDF now reflects that wider role — a jack of all trades for schools, clubs, community groups and anyone preparing documents to share.
         """;
     public const string ChangeLog = """
+        1.5.1 — 30 October 2026
+        • Fixed PowerPoint conversion failing with an ExportAsFixedFormat argument error.
+        • Project licence included in About.
+
         1.5.0 — 30 October 2026
         • Optional Print after saving in all four modes, with one printer selection per batch.
         • Sequential background printing with a bounded queue; saved PDFs survive print failures.

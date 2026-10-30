@@ -43,6 +43,7 @@ See the [code signing policy](CODE-SIGNING.md) and [SignPath preparation checkli
 | `src/NewsletterCombiner.Core` | Year grouping, filenames, PDF merging, compression and batch output. |
 | `tests/NewsletterCombiner.Tests` | Automated core checks. |
 | `tests/fixtures` | Generated image fixtures for layout checks. |
+| `tests/WindowsPowerPoint.ps1` | PowerPoint export regression checks using single/multiple PPTX and legacy PPT fixtures. Run in a logged-in Windows desktop session with PowerPoint installed. |
 | `tests/WindowsSmoke.ps1` | Windows Office export checks and fixtures for a manual interface check. |
 | `tests/WindowsModes.ps1` | Windows mode switching, image conversion, ordering, appending and filename checks using generated documents. |
 | `tests/WindowsPrint.ps1` | Save-and-print checks using Microsoft Print to PDF with explicit temporary output files; no physical printing. Includes a 10,000-file folder-import check. |
@@ -50,6 +51,16 @@ See the [code signing policy](CODE-SIGNING.md) and [SignPath preparation checkli
 | `tools/PdfInspector` | PDF structure inspection for validation. |
 
 ### Verification
+
+The **1.5.1 source/desktop build** fixes PowerPoint's late-bound `PrintRange` argument. Version 1.5.0 reproduced “Could not convert argument 7 for call to ExportAsFixedFormat” on a generated PPTX; the same fixture exports successfully with 1.5.1. `tests/WindowsPowerPoint.ps1` now covers single-slide PPTX, multi-slide PPTX and legacy PPT, including hidden slides and a saved print selection. All three exports passed on USS-DISCOVERY with desktop PowerPoint 16.0. Independent PDF inspection confirmed 1/2/2 pages, visible slides in order, web and original-location relative links, and blue text/green fills. Originals remained byte-for-byte unchanged. Office can update a legacy PPT working copy, which is why conversion uses snapshots. [PowerPoint verification](verification/powerpoint-1.5.1.json).
+
+Run this regression check from an interactive desktop session before releasing changes to Office export:
+
+```powershell
+./tests/WindowsPowerPoint.ps1 -Executable './dist/GoodSort PDF.exe'
+```
+
+GitHub-hosted runners do not have desktop Office; their core and mode checks do not replace this test. The public downloadable binary remains 1.5.0 pending the [licensing review](LICENSING.md).
 
 Version **1.5.0** passes **50 core checks**, **51 Windows mode checks**, **37 Windows page-editor checks** and **34 Windows printing checks**. The printing checks exercise the actual Windows driver using temporary Microsoft Print to PDF outputs. Importing a generated folder containing 10,000 PDFs took about **0.46 seconds** on USS-DISCOVERY; the core runner also completed 10,000 simulated submissions in order. This is not a benchmark of 10,000 Office conversions or physical print jobs.
 

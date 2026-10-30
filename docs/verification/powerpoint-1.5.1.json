@@ -1,0 +1,79 @@
+{
+  "version": "1.5.1",
+  "platform": "Windows desktop, PowerPoint 16.0",
+  "baseline": {
+    "version": "1.5.0",
+    "error": "Could not convert argument 7 for call to ExportAsFixedFormat.",
+    "fixture": "Generated single-slide PPTX"
+  },
+  "fixedBaseline": {
+    "exitCode": 0,
+    "pdfCreated": true,
+    "sourceUnchanged": true
+  },
+  "exportRegression": [
+    {
+      "file": "Single slide.pptx",
+      "exported": true,
+      "sourceUnchanged": true,
+      "snapshotUnchanged": true,
+      "pages": 1,
+      "visibleSlides": [
+        1
+      ],
+      "links": 2
+    },
+    {
+      "file": "Multiple slides.pptx",
+      "exported": true,
+      "sourceUnchanged": true,
+      "snapshotUnchanged": true,
+      "pages": 2,
+      "visibleSlides": [
+        1,
+        3
+      ],
+      "links": 4
+    },
+    {
+      "file": "Legacy slides.ppt",
+      "exported": true,
+      "sourceUnchanged": true,
+      "snapshotUnchanged": false,
+      "pages": 2,
+      "visibleSlides": [
+        1,
+        3
+      ],
+      "links": 4
+    }
+  ],
+  "pdfInspection": {
+    "pageOrderAndHiddenSlideExclusion": true,
+    "savedPrintSelectionDidNotLimitExport": true,
+    "webLinksRetained": true,
+    "relativeLinksResolveAgainstOriginalFolder": true,
+    "blueTextRgb": [
+      34,
+      102,
+      204
+    ],
+    "greenFillRgb": [
+      34,
+      125,
+      57
+    ],
+    "coloursVerifiedOnAllFiveOutputPages": true,
+    "inspectionTools": [
+      "PDFsharp inspector",
+      "pdftotext",
+      "pdftoppm at 72 dpi"
+    ]
+  },
+  "notes": [
+    "Generated fixtures only; the user presentation was not needed to reproduce the reported error.",
+    "PowerPoint can change legacy working copies; all originals remain unchanged.",
+    "No documents were sent to a printer.",
+    "The public 1.5.0 executable was not replaced."
+  ]
+}

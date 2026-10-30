@@ -14,7 +14,7 @@
     <DebugType>embedded</DebugType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>app.ico</ApplicationIcon>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <Product>GoodSort PDF</Product>
     <Authors>Andrew</Authors>

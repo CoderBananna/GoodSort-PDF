@@ -30,8 +30,7 @@ internal static class OfficeExporter
                 documents = app.Presentations;
                 document = documents.Open(Path.GetFullPath(source), 0, 0, 0);
                 ResolveRelativeLinks(document, originalPath, presentation: true);
-                document.ExportAsFixedFormat(Path.GetFullPath(destination), 2, 2, 0, 1, 1, 0,
-                    null, 1, "", true, true, true, true, false);
+                ExportPresentationPdf(document, destination);
             }
             else
             {
@@ -81,6 +80,34 @@ internal static class OfficeExporter
             }
             Release(documents);
             Release(app);
+        }
+    }
+
+    static void ExportPresentationPdf(dynamic document, string destination)
+    {
+        dynamic? slides = null;
+        dynamic? printOptions = null;
+        dynamic? ranges = null;
+        dynamic? range = null;
+        try
+        {
+            slides = document.Slides;
+            var count = (int)slides.Count;
+            if (count == 0) throw new InvalidDataException("This presentation has no slides to export.");
+            printOptions = document.PrintOptions;
+            ranges = printOptions.Ranges;
+            // PowerPoint requires a PrintRange COM object. A late-bound C# null is
+            // marshalled as the wrong variant type and fails with "argument 7".
+            range = ranges.Add(1, count);
+            document.ExportAsFixedFormat(Path.GetFullPath(destination), 2, 2, 0, 1, 1, 0,
+                range, 1, "", true, true, true, true, false);
+        }
+        finally
+        {
+            Release(range);
+            Release(ranges);
+            Release(printOptions);
+            Release(slides);
         }
     }
 

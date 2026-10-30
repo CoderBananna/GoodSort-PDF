@@ -19,7 +19,7 @@ foreach (var page in pdf.Pages)
     }
 }
 Console.WriteLine(JsonSerializer.Serialize(new {
-    Bytes = new FileInfo(args[0]).Length, Pages = pdf.PageCount, Links = links.Count,
+    Bytes = new FileInfo(args[0]).Length, Pages = pdf.PageCount, Links = links.Count, LinkTargets = links,
     LinkFingerprint = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(string.Join('\n', links)))),
     PageSizes = pdf.Pages.Cast<PdfPage>().Select(p => new { W = p.Width.Point, H = p.Height.Point }),
     PageContentFingerprints = pdf.Pages.Cast<PdfPage>().Select(p => Convert.ToHexString(SHA256.HashData(p.Contents.CreateSingleContent().Stream.UnfilteredValue))),

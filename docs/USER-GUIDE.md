@@ -214,6 +214,7 @@ See the [privacy policy](PRIVACY.md) for stored preferences, network printers an
 
 | What happens | What to check |
 | --- | --- |
+| PowerPoint reports “Could not convert argument 7 for call to ExportAsFixedFormat” | This affects the 1.5.0 download. The fix is in source/desktop version 1.5.1; a replacement public executable has not yet been published. |
 | A year level is missing or incorrect | Edit the year beside that newsletter before clicking GO. |
 | Word or PowerPoint cannot export | Check the required desktop application is installed and that the document opens without a password, repair or other prompt. |
 | Office conversion times out | Each file has a three-minute limit. Dismiss any Office dialogs and retry. |
