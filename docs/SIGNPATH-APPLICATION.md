@@ -26,7 +26,9 @@ It started with preparing fortnightly school newsletters and grew into a general
 - [x] **Select an OSI-approved project licence.** Andrew chose GPL version 3 (`GPL-3.0-only`). The full licence is in `LICENSE`, with a copyright/no-warranty notice and full text embedded in new app builds. [Licensing details](LICENSING.md) distinguish the existing download and the remaining dependency review.
 - [x] **Confirm GitHub MFA.** Andrew confirmed it is enabled on 30 October 2026; it was not independently exposed by the API. Enable MFA for SignPath when the account is created.
 - [x] **Confirm a successful hosted build.** [Run 41059551427](https://github.com/CoderBananna/GoodSort-PDF/actions/runs/41059551427) passed on source commit `9a21986a1aeb8bf77ad2251b9643960a150605b3`: 50 core checks, 49 Windows mode checks and executable metadata verification. Two conditional animation checks were skipped because animations were disabled on the hosted runner. [Saved evidence](verification/signpath-build-2026-10-30.json) records the hash, SDK and results. A manual run retains one-day build evidence. Executable upload is an optional manual input, off by default pending dependency review. Do not replace the public release just to obtain build evidence.
-- [ ] **Resolve the Windows SDK exception with SignPath.** See the exact disclosure below. Acceptance must not be assumed.
+- [x] **Check dependency evidence.** The [30 October findings](LICENSING-CHECK.md) confirm Microsoft redistribution permission and record the remaining SDK conditions. No concrete Office redistribution conflict was identified.
+- [ ] **Resolve SDK distribution terms and GPL treatment.** Establish adequate agreement to the Microsoft terms and a supported System Libraries classification or alternative.
+- [ ] **Confirm the Windows SDK exception with SignPath.** See the exact disclosure below. Acceptance must not be assumed.
 - [ ] **Review the policy and application facts.** Ensure roles and contact details are current, and supply any identity or account information privately in the application rather than in this repository.
 
 The policy, dependency locks, SDK pin, hosted workflow, proposed artifact configuration and privacy/removal documentation are prepared. These items do not themselves establish eligibility or acceptance.
@@ -43,18 +45,18 @@ The app is self-contained. `packages.lock.json` captures application package ver
 | System.Security.Cryptography.Pkcs | 10.0.14 | MIT |
 | .NET / Windows Desktop runtime | 10.0.14, selected by SDK 10.0.403 | MIT plus upstream notices |
 | C#/WinRT runtime (`WinRT.Runtime.dll`) | Supplied by Windows SDK projection pack | MIT |
-| Windows SDK .NET projection (`Microsoft.Windows.SDK.NET.dll`) | Pack 10.0.19041.57 | Microsoft Windows SDK licence; exception needs confirmation |
+| Windows SDK .NET projection (`Microsoft.Windows.SDK.NET.dll`) | Pack 10.0.19041.57 | Microsoft Windows SDK licence; explicitly redistributable subject to terms; GPL/SignPath treatment outstanding |
 | Microsoft Word and PowerPoint | User-installed desktop applications | Proprietary, separately installed, not distributed with GoodSort PDF |
 
 Build-only tooling, such as Microsoft.NET.ILLink.Tasks, is not distributed as a separate application feature. Windows APIs and printer drivers are supplied by the operating system/user. Review the actual candidate if any of these facts change.
 
 ### Windows SDK question for the application
 
-> GoodSort PDF is a self-contained .NET Windows desktop application. It bundles the Microsoft Windows SDK .NET projection, including `Microsoft.Windows.SDK.NET.dll` from `Microsoft.Windows.SDK.NET.Ref` 10.0.19041.57, under the Microsoft Windows SDK licence. This enables Windows' native PDF rendering for page previews and printing. May this component be included under your System Libraries exception? The C#/WinRT runtime has its own MIT licence. Word and PowerPoint are separately installed applications accessed through COM automation; they are not bundled. Please also confirm that this external Office integration is acceptable.
+> GoodSort PDF is a self-contained .NET Windows desktop application. It bundles the Microsoft Windows SDK .NET projection, including `Microsoft.Windows.SDK.NET.dll` from `Microsoft.Windows.SDK.NET.Ref` 10.0.19041.57, under the Microsoft Windows SDK licence. This enables Windows' native PDF rendering for page previews and printing. Microsoft's official Windows SDK REDIST list explicitly permits including the unmodified projection in applications calling WinRT APIs. May this component, bundled inside our single executable, be included under your System Libraries exception? The C#/WinRT runtime has its own MIT licence. Word and PowerPoint are separately installed applications accessed through COM automation; they are not bundled. Please also confirm that this external Office integration is acceptable.
 
 Supporting files: [Windows SDK licence](licenses/windows-sdk-license.rtf), [application project](../src/NewsletterCombiner.App/NewsletterCombiner.App.csproj), [preview implementation](../src/NewsletterCombiner.App/PdfPreviewSession.cs), [printing implementation](../src/NewsletterCombiner.App/PdfPrinter.cs), and [Office exporter](../src/NewsletterCombiner.App/OfficeExporter.cs).
 
-This is an open eligibility question, not a conclusion that the component qualifies. With GPL selected, also resolve the project's own distribution/licence compatibility before publishing a newly licensed binary; SignPath acceptance does not replace that review.
+This draft has not been sent. It asks about signing eligibility. The separate [dependency check](LICENSING-CHECK.md) records the Microsoft agreement requirement and GPL classification question; SignPath acceptance would not settle those obligations.
 
 ## After acceptance, before the first signed release
 
