@@ -1,6 +1,16 @@
 # Dependency licensing check — 30 October 2026
 
-Evidence check of source commit `a92136aa603fbb707aea0fb0e86bd044118e3ecd` (1.5.1), its publish dependency manifest, package metadata and the sources below. This records findings and remaining decisions; it is not a legal opinion or an approval from Microsoft, the FSF or SignPath. No enquiry or application has been sent.
+Evidence check of source commit `a92136aa603fbb707aea0fb0e86bd044118e3ecd` (1.5.1), its publish dependency manifest, package metadata and the sources below. This records findings and remaining decisions; it is not a legal opinion or an approval from Microsoft, the FSF or SignPath. Clarification enquiries were sent on 30 October 2026 as recorded below. No signing application has been submitted.
+
+## Enquiry status
+
+| Recipient / channel | Sent | Question | Status |
+| --- | --- | --- | --- |
+| SignPath support, by email | 30 October 2026 | Foundation eligibility of the bundled Windows SDK projection under the System Libraries exception, and external Office integration | Awaiting response |
+| FSF Licensing and Compliance, by email | 30 October 2026 | GPLv3 System Libraries classification, single-file bundling and the differing guide/FAQ wording | Awaiting response |
+| Microsoft WindowsAppSDK discussion | 30 October 2026 | Intended way for a portable executable to satisfy the Windows SDK user/distributor agreement requirement | [Posted follow-up](https://github.com/microsoft/WindowsAppSDK/discussions/6847#discussioncomment-19294813); awaiting response |
+
+The Microsoft post identifies this as the Windows Platform SDK projection and requests referral if the discussion is not the appropriate channel. An enquiry being sent does not establish acceptance, compliance or a commitment to reply. Responses must be assessed against the actual package and distribution before changing the conclusions below.
 
 ## Findings
 

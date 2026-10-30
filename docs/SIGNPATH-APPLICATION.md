@@ -56,7 +56,7 @@ Build-only tooling, such as Microsoft.NET.ILLink.Tasks, is not distributed as a 
 
 Supporting files: [Windows SDK licence](licenses/windows-sdk-license.rtf), [application project](../src/NewsletterCombiner.App/NewsletterCombiner.App.csproj), [preview implementation](../src/NewsletterCombiner.App/PdfPreviewSession.cs), [printing implementation](../src/NewsletterCombiner.App/PdfPrinter.cs), and [Office exporter](../src/NewsletterCombiner.App/OfficeExporter.cs).
 
-This draft has not been sent. It asks about signing eligibility. The separate [dependency check](LICENSING-CHECK.md) records the Microsoft agreement requirement and GPL classification question; SignPath acceptance would not settle those obligations.
+A preliminary eligibility enquiry covering these facts was emailed to SignPath support on 30 October 2026; a response is pending. This is not a submitted application. See the [enquiry status](LICENSING-CHECK.md#enquiry-status) for the separate FSF and Microsoft enquiries. It asks about signing eligibility. The separate [dependency check](LICENSING-CHECK.md) records the Microsoft agreement requirement and GPL classification question; SignPath acceptance would not settle those obligations.
 
 ## After acceptance, before the first signed release
 
