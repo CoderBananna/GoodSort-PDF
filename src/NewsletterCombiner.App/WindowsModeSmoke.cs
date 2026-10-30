@@ -17,6 +17,8 @@ internal static class WindowsModeSmoke
 {
     internal static async Task RunAsync(string folder)
     {
+        // Match FilePanel's canonical paths even when the CI caller uses forward slashes.
+        folder = Path.GetFullPath(folder);
         Directory.CreateDirectory(folder);
         if (Directory.EnumerateFileSystemEntries(folder).Any()) throw new IOException("Use an empty test folder.");
         var checks = new List<string>();
