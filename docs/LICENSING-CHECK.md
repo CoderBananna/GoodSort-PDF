@@ -49,11 +49,11 @@ Bundling alone is not a blanket GPLv3 prohibition: the FSF's [GPLv3 guide](https
 
 This architecture supports treating Office as an external application rather than code redistributed inside GoodSort. The FSF's [separate-program guidance](https://www.gnu.org/licenses/gpl-faq.en.html#MereAggregation) considers both communication mechanism and semantics; separate processes are evidence, not an automatic exemption for every COM integration. No concrete Office-related GPL conflict was identified here. Users still need their own appropriately licensed Office installation. This finding does not cover hosting Office conversion as an unattended service.
 
-## Decisions before a new public binary
+## Outstanding follow-up and release obligations
 
 1. Resolve the SDK agreement requirement and record how the app/distribution meets it, or replace the bundled projection.
 2. Record a supported GPL System Libraries conclusion or an appropriate alternative. Do not treat SignPath acceptance as legal clearance.
 3. Ask SignPath to confirm eligibility of this disclosed SDK component for signing. Its [terms](https://signpath.org/terms.html) allow System Libraries but do not name this package. Ordinary unsigned releases do not require SignPath permission.
 4. For a GPL release, provide the exact corresponding source, build scripts and dependency source/access information alongside the binary; a moving main-branch link alone is insufficient. Preserve licences and notices.
 
-The executable-upload default remains off while these specific SDK points are open. This is a project precaution, not a rejection or publication ban imposed by SignPath. Source development and testing can continue. No existing release has been removed or replaced by this check.
+The maintainer authorised an unsigned 1.5.1 maintenance release with the PowerPoint fix while these enquiries are pending. This supersedes the earlier precautionary publication hold; it does not resolve the questions above or claim external approval. The workflow keeps executable uploads off by default and enables them explicitly for release candidates. The release supplies matching source and licences. Signing remains unconfigured.

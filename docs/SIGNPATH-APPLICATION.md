@@ -11,7 +11,7 @@ Maintainer notes, not an application submission. No SignPath account, certificat
 | Downloads | https://github.com/CoderBananna/GoodSort-PDF/releases/latest |
 | Maintainer | Andrew, GitHub `CoderBananna` |
 | Format | Single self-contained Windows x64 executable; no installer |
-| Current public version | 1.5.0, unsigned |
+| Current public version | 1.5.1, unsigned |
 | Signing policy | [Code signing policy](CODE-SIGNING.md) |
 | Privacy and removal | [Privacy policy](PRIVACY.md) |
 | Automated build | [Windows build](../.github/workflows/build.yml) |
@@ -25,7 +25,7 @@ It started with preparing fortnightly school newsletters and grew into a general
 
 - [x] **Select an OSI-approved project licence.** Andrew chose GPL version 3 (`GPL-3.0-only`). The full licence is in `LICENSE`, with a copyright/no-warranty notice and full text embedded in new app builds. [Licensing details](LICENSING.md) distinguish the existing download and the remaining dependency review.
 - [x] **Confirm GitHub MFA.** Andrew confirmed it is enabled on 30 October 2026; it was not independently exposed by the API. Enable MFA for SignPath when the account is created.
-- [x] **Confirm a successful hosted build.** [Run 41059551427](https://github.com/CoderBananna/GoodSort-PDF/actions/runs/41059551427) passed on source commit `9a21986a1aeb8bf77ad2251b9643960a150605b3`: 50 core checks, 49 Windows mode checks and executable metadata verification. Two conditional animation checks were skipped because animations were disabled on the hosted runner. [Saved evidence](verification/signpath-build-2026-10-30.json) records the hash, SDK and results. A manual run retains one-day build evidence. Executable upload is an optional manual input, off by default pending dependency review. Do not replace the public release just to obtain build evidence.
+- [x] **Confirm a successful hosted build.** [Run 41059551427](https://github.com/CoderBananna/GoodSort-PDF/actions/runs/41059551427) passed on source commit `9a21986a1aeb8bf77ad2251b9643960a150605b3`: 50 core checks, 49 Windows mode checks and executable metadata verification. Two conditional animation checks were skipped because animations were disabled on the hosted runner. [Saved evidence](verification/signpath-build-2026-10-30.json) records the hash, SDK and results. A manual run retains one-day build evidence. Executable upload is an optional manual input, off by default and enabled explicitly for release candidates. The unsigned 1.5.1 maintenance release proceeds while the documented enquiries remain pending.
 - [x] **Check dependency evidence.** The [30 October findings](LICENSING-CHECK.md) confirm Microsoft redistribution permission and record the remaining SDK conditions. No concrete Office redistribution conflict was identified.
 - [ ] **Resolve SDK distribution terms and GPL treatment.** Establish adequate agreement to the Microsoft terms and a supported System Libraries classification or alternative.
 - [ ] **Confirm the Windows SDK exception with SignPath.** See the exact disclosure below. Acceptance must not be assumed.
@@ -70,7 +70,7 @@ A preliminary eligibility enquiry covering these facts was emailed to SignPath s
 
 ## Cost controls
 
-The build uses standard `windows-2022` GitHub-hosted runners for this public repository. It has a 20-minute timeout and no dependency cache. Routine push/PR runs do not upload executables; manual main-branch runs retain small evidence files for one day. Executable uploads require an explicit manual input and should remain off until the licensing review is resolved. Several manual runs in a day still consume storage: check account-wide Actions/Packages usage and delete unneeded artifacts before reaching the allowance. This repository workflow does not configure account billing or guarantee unused storage elsewhere on the account.
+The build uses standard `windows-2022` GitHub-hosted runners for this public repository. It has a 20-minute timeout and no dependency cache. Routine push/PR runs do not upload executables; manual main-branch runs retain small evidence files for one day. Executable uploads require an explicit manual input; the default remains off to avoid retaining unnecessary large artifacts. Several manual runs in a day still consume storage: check account-wide Actions/Packages usage and delete unneeded artifacts before reaching the allowance. This repository workflow does not configure account billing or guarantee unused storage elsewhere on the account.
 
 ## Sources
 

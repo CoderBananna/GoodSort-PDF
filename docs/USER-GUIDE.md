@@ -13,7 +13,7 @@
 
 ## Download and open
 
-Download **GoodSort.PDF.1.5.0.exe** from the [latest release](https://github.com/CoderBananna/GoodSort-PDF/releases/latest). Save it wherever you prefer, such as your desktop, and double-click it to run.
+Download **GoodSort.PDF.1.5.1.exe** from the [latest release](https://github.com/CoderBananna/GoodSort-PDF/releases/latest). Save it wherever you prefer, such as your desktop, and double-click it to run.
 
 The app is supplied as a **single executable**. It does not need an installer, Adobe Acrobat, Python or a separate .NET installation. The executable includes its runtime and is approximately 72 MB; this is separate from the size of the PDFs it creates. The current build is unsigned.
 
@@ -214,7 +214,7 @@ See the [privacy policy](PRIVACY.md) for stored preferences, network printers an
 
 | What happens | What to check |
 | --- | --- |
-| PowerPoint reports “Could not convert argument 7 for call to ExportAsFixedFormat” | This affects the 1.5.0 download. The fix is in source/desktop version 1.5.1; a replacement public executable has not yet been published. |
+| PowerPoint reports “Could not convert argument 7 for call to ExportAsFixedFormat” | Update to version 1.5.1 or later from the latest release. This fixes the PowerPoint export argument error in 1.5.0. |
 | A year level is missing or incorrect | Edit the year beside that newsletter before clicking GO. |
 | Word or PowerPoint cannot export | Check the required desktop application is installed and that the document opens without a password, repair or other prompt. |
 | Office conversion times out | Each file has a three-minute limit. Dismiss any Office dialogs and retry. |

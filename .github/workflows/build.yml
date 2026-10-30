@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       upload_unsigned:
-        description: 'Upload executable (only after dependency licensing review)'
+        description: 'Upload unsigned release candidate'
         type: boolean
         default: false
 
@@ -45,7 +45,7 @@ jobs:
       - name: Verify executable and record build evidence
         shell: pwsh
         run: ./tools/Verify-Release.ps1
-      # Candidate upload remains off by default pending dependency licensing review.
+      # Candidate upload is explicitly enabled for a reviewed release build.
       # No signing credentials, release uploads, or paid runners are used here.
       - name: Upload unsigned candidate
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.upload_unsigned

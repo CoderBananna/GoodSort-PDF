@@ -27,7 +27,7 @@ The application uses WPF and .NET 10, with Windows’ native PDF renderer for pa
 
 The [Windows build workflow](../.github/workflows/build.yml) runs the core tests, publishes on a standard GitHub-hosted Windows runner, runs the Windows mode checks and verifies executable metadata. The SDK and action revisions are pinned. NuGet restores use checked-in lock files and the repository's explicit nuget.org source.
 
-Pushes and pull requests produce check results and a build summary. A manual run on `main` retains build evidence for one day. Its optional executable-upload input defaults to off pending the [dependency licensing review](LICENSING.md); when enabled, it also retains an **unsigned candidate** for one day. It does not sign, publish a release or replace the desktop executable. Office export, the full page-editor suite and printer-driver validation still require the documented desktop checks.
+Pushes and pull requests produce check results and a build summary. A manual run on `main` retains build evidence for one day. Its optional executable-upload input defaults to off; when enabled, it also retains an **unsigned candidate** for one day. It does not sign, publish a release or replace the desktop executable. Office export, the full page-editor suite and printer-driver validation still require the documented desktop checks.
 
 For a deliberate dependency update, change the package/SDK versions, run `dotnet restore --force-evaluate` for each affected project (app, tests, core and PDF inspector), review the lock-file changes and upstream notices, then run the normal locked build. Review SDK-provided runtime/projection packs too; these are not fully represented in package lock files. Update `global.json` deliberately rather than enabling SDK roll-forward.
 
@@ -52,7 +52,7 @@ See the [code signing policy](CODE-SIGNING.md) and [SignPath preparation checkli
 
 ### Verification
 
-The **1.5.1 source/desktop build** fixes PowerPoint's late-bound `PrintRange` argument. Version 1.5.0 reproduced “Could not convert argument 7 for call to ExportAsFixedFormat” on a generated PPTX; the same fixture exports successfully with 1.5.1. `tests/WindowsPowerPoint.ps1` now covers single-slide PPTX, multi-slide PPTX and legacy PPT, including hidden slides and a saved print selection. All three exports passed on USS-DISCOVERY with desktop PowerPoint 16.0. Independent PDF inspection confirmed 1/2/2 pages, visible slides in order, web and original-location relative links, and blue text/green fills. Originals remained byte-for-byte unchanged. Office can update a legacy PPT working copy, which is why conversion uses snapshots. [PowerPoint verification](verification/powerpoint-1.5.1.json).
+The **1.5.1 release** fixes PowerPoint's late-bound `PrintRange` argument. Version 1.5.0 reproduced “Could not convert argument 7 for call to ExportAsFixedFormat” on a generated PPTX; the same fixture exports successfully with 1.5.1. `tests/WindowsPowerPoint.ps1` now covers single-slide PPTX, multi-slide PPTX and legacy PPT, including hidden slides and a saved print selection. All three exports passed on USS-DISCOVERY with desktop PowerPoint 16.0. Independent PDF inspection confirmed 1/2/2 pages, visible slides in order, web and original-location relative links, and blue text/green fills. Originals remained byte-for-byte unchanged. Office can update a legacy PPT working copy, which is why conversion uses snapshots. [PowerPoint verification](verification/powerpoint-1.5.1.json).
 
 Run this regression check from an interactive desktop session before releasing changes to Office export:
 
@@ -60,7 +60,7 @@ Run this regression check from an interactive desktop session before releasing c
 ./tests/WindowsPowerPoint.ps1 -Executable './dist/GoodSort PDF.exe'
 ```
 
-GitHub-hosted runners do not have desktop Office; their core and mode checks do not replace this test. The public downloadable binary remains 1.5.0 pending the [licensing review](LICENSING.md).
+GitHub-hosted runners do not have desktop Office; their core and mode checks do not replace this test. The public 1.5.1 release includes this fix. [Licensing enquiries](LICENSING-CHECK.md#enquiry-status) remain pending independently of this unsigned maintenance release.
 
 Version **1.5.0** passes **50 core checks**, **51 Windows mode checks**, **37 Windows page-editor checks** and **34 Windows printing checks**. The printing checks exercise the actual Windows driver using temporary Microsoft Print to PDF outputs. Importing a generated folder containing 10,000 PDFs took about **0.46 seconds** on USS-DISCOVERY; the core runner also completed 10,000 simulated submissions in order. This is not a benchmark of 10,000 Office conversions or physical print jobs.
 

@@ -2,7 +2,7 @@
 
 ## Current status
 
-Public release **1.5.0 is unsigned**. The project is preparing an application to SignPath Foundation; acceptance and signing are not yet configured. A successful build does not mean an executable is signed.
+Public release **1.5.1 is unsigned**. The project is preparing an application to SignPath Foundation; acceptance and signing are not yet configured. A successful build does not mean an executable is signed.
 
 If the application is accepted and signed releases are available, the signing attribution will be: **Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.org).** This is a proposed attribution, not a claim of current sponsorship.
 
@@ -22,7 +22,7 @@ All people with repository or signing access must use multi-factor authenticatio
 
 1. Build the reviewed source commit on a standard GitHub-hosted Windows runner using the [Windows build workflow](../.github/workflows/build.yml), the pinned SDK and checked-in dependency locks.
 2. Require the core and Windows mode checks to pass. Complete applicable desktop Office, page-editor and printing checks before a release; the hosted build does not replace those checks.
-3. Record the commit, version, SDK, executable metadata and SHA-256 hash. Manual builds retain evidence for one day; executable uploads require the optional manual input and must stay off until the dependency licensing review is resolved. When enabled, the unsigned executable is retained as a GitHub Actions artifact for one day. Routine builds retain logs and a summary without a downloadable executable.
+3. Record the commit, version, SDK, executable metadata and SHA-256 hash. Manual builds retain evidence for one day; executable uploads require the optional manual input. Unsigned maintenance releases may be published while the documented licensing enquiries remain pending; this does not imply signing approval or a resolved legal interpretation. When enabled, the unsigned executable is retained as a GitHub Actions artifact for one day. Routine builds retain logs and a summary without a downloadable executable.
 4. After SignPath acceptance and integration, submit that exact workflow artifact through SignPath's GitHub connector. Do not substitute a locally built executable. Restrict signing to the approved repository, workflow and release source, and to the product name **GoodSort PDF** with matching version metadata.
 5. The approver reviews the source commit, checks, version and artifact before manually authorising each signing request in SignPath.
 6. Verify the returned Authenticode signature, certificate, timestamp and product/version metadata before publishing. Record a new SHA-256 hash for the signed executable and publish its matching source and licence. Signing changes the executable hash.
