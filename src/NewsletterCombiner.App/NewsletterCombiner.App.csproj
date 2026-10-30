@@ -21,6 +21,9 @@
     <Copyright>Andrew</Copyright>
   </PropertyGroup>
   <ItemGroup><ProjectReference Include="../NewsletterCombiner.Core/NewsletterCombiner.Core.csproj" /></ItemGroup>
-  <ItemGroup><EmbeddedResource Include="../../THIRD-PARTY-NOTICES.txt" /></ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../../THIRD-PARTY-NOTICES.txt" />
+    <EmbeddedResource Include="../../LICENSE" LogicalName="GoodSort.LICENSE" />
+  </ItemGroup>
   <ItemGroup><Resource Include="app.ico" /></ItemGroup>
 </Project>

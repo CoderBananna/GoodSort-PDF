@@ -4,7 +4,7 @@ Build instructions and verification notes for GoodSort PDF maintainers. Run the 
 
 ## Build from source
 
-Install the **.NET 10 SDK**, clone this repository, and run:
+Install the exact **.NET SDK version in [global.json](../global.json)** (currently 10.0.403), clone this repository, and run in PowerShell:
 
 ```powershell
 ./build.ps1
@@ -15,11 +15,25 @@ The script runs the core tests and publishes the self-contained Windows executab
 Equivalent commands, including for cross-compiling on Linux:
 
 ```sh
-dotnet run --project tests/NewsletterCombiner.Tests -c Release
-dotnet publish src/NewsletterCombiner.App/NewsletterCombiner.App.csproj -c Release -r win-x64 --self-contained true -o dist
+dotnet restore tests/NewsletterCombiner.Tests --locked-mode
+dotnet run --project tests/NewsletterCombiner.Tests -c Release --no-restore
+dotnet restore src/NewsletterCombiner.App/NewsletterCombiner.App.csproj --locked-mode
+dotnet publish src/NewsletterCombiner.App/NewsletterCombiner.App.csproj -c Release -r win-x64 --self-contained true --no-restore -o dist
 ```
 
 The application uses WPF and .NET 10, with Windows’ native PDF renderer for page thumbnails. PDF composition is handled by PDFsharp 6.2.4. Office export runs in a separate STA worker inside the same executable, keeping the interface responsive.
+
+### Automated builds and dependency updates
+
+The [Windows build workflow](../.github/workflows/build.yml) runs the core tests, publishes on a standard GitHub-hosted Windows runner, runs the Windows mode checks and verifies executable metadata. The SDK and action revisions are pinned. NuGet restores use checked-in lock files and the repository's explicit nuget.org source.
+
+Pushes and pull requests produce check results and a build summary. A manual run on `main` retains build evidence for one day. Its optional executable-upload input defaults to off pending the [dependency licensing review](LICENSING.md); when enabled, it also retains an **unsigned candidate** for one day. It does not sign, publish a release or replace the desktop executable. Office export, the full page-editor suite and printer-driver validation still require the documented desktop checks.
+
+For a deliberate dependency update, change the package/SDK versions, run `dotnet restore --force-evaluate` for each affected project (app, tests, core and PDF inspector), review the lock-file changes and upstream notices, then run the normal locked build. Review SDK-provided runtime/projection packs too; these are not fully represented in package lock files. Update `global.json` deliberately rather than enabling SDK roll-forward.
+
+`tools/Verify-Release.ps1` runs after the build on Windows from a clean committed checkout. It records version metadata, source commit, SDK and SHA-256 under the ignored `test-output` folder, and rejects source/lock-file changes during the build. Build traceability is not a claim that different Windows images produce byte-for-byte identical executables.
+
+See the [code signing policy](CODE-SIGNING.md) and [SignPath preparation checklist](SIGNPATH-APPLICATION.md) for responsibilities, outstanding eligibility questions and the steps needed after acceptance.
 
 ### Project layout
 

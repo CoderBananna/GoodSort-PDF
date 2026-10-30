@@ -208,6 +208,8 @@ All document processing happens on the Windows computer. The app has no document
 - Existing output PDFs are never overwritten. Choose another destination folder or move the earlier PDFs before generating the same fortnight again.
 - The app remembers your mode and naming preferences. Printing always starts unchecked when the app opens.
 
+See the [privacy policy](PRIVACY.md) for stored preferences, network printers and folders, temporary files, and instructions for removing the app.
+
 ## Troubleshooting and limits
 
 | What happens | What to check |

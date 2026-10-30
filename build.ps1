@@ -1,9 +1,15 @@
 $ErrorActionPreference = 'Stop'
 Push-Location $PSScriptRoot
 try {
-    dotnet run --project tests/NewsletterCombiner.Tests -c Release
+    $buildOptions = @()
+    if ($env:GITHUB_ACTIONS -eq 'true') { $buildOptions += '-p:ContinuousIntegrationBuild=true' }
+    dotnet restore tests/NewsletterCombiner.Tests --locked-mode
+    if ($LASTEXITCODE -ne 0) { throw 'Test dependency restore failed.' }
+    dotnet run --project tests/NewsletterCombiner.Tests -c Release --no-restore @buildOptions
     if ($LASTEXITCODE -ne 0) { throw 'Tests failed.' }
-    dotnet publish src/NewsletterCombiner.App/NewsletterCombiner.App.csproj -c Release -r win-x64 --self-contained true -o dist
+    dotnet restore src/NewsletterCombiner.App/NewsletterCombiner.App.csproj --locked-mode
+    if ($LASTEXITCODE -ne 0) { throw 'Application dependency restore failed.' }
+    dotnet publish src/NewsletterCombiner.App/NewsletterCombiner.App.csproj -c Release -r win-x64 --self-contained true --no-restore -o dist @buildOptions
     if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
     $exe = Join-Path $PSScriptRoot 'dist/GoodSort PDF.exe'
     if (-not (Test-Path $exe)) { throw 'The executable was not produced.' }

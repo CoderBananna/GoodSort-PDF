@@ -14,7 +14,7 @@ GoodSort PDF is a Windows PDF toolkit: a **jack of all trades for preparing PDFs
 
 **Single executable · No installation · Current version: 1.5.0**
 
-Download `GoodSort.PDF.1.5.0.exe`, save it somewhere convenient and double-click to open. The current build is unsigned. [Requirements](#requirements)
+Download `GoodSort.PDF.1.5.0.exe`, save it somewhere convenient and double-click to open. The current build is unsigned. [Requirements](#requirements) · [Code signing policy](docs/CODE-SIGNING.md)
 
 <table>
   <tr>
@@ -77,6 +77,8 @@ Everyday use grew it into **GoodSort PDF**—adding compression, bulk conversion
 - [User guide](docs/USER-GUIDE.md) — instructions, naming examples, printing and troubleshooting.
 - [Development guide](docs/DEVELOPMENT.md) — building, implementation details and verification.
 - [Changelog](CHANGELOG.md) — past updates.
+- [GPLv3 licence](LICENSE) · [Licensing details](docs/LICENSING.md).
+- [Privacy and removal](docs/PRIVACY.md) · [Code signing policy](docs/CODE-SIGNING.md).
 
 **[Written by Andrew](https://github.com/CoderBananna/GoodSort-PDF)** · Copyright © 2026 Andrew.
 
