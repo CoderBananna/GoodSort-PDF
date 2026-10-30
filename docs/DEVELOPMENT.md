@@ -1,6 +1,6 @@
 # Development guide
 
-Build instructions and verification notes for GoodSort PDF maintainers. Run the commands below from the repository root.
+Build instructions and verification notes for GoodSort PDF maintainers. Run the commands below from the repository root. For app workflows, see the [user guide](USER-GUIDE.md); for the project overview, see the [README](../README.md).
 
 ## Build from source
 
@@ -62,3 +62,23 @@ A dedicated STA worker submits one job per saved PDF. At most two jobs from the 
 `PrintBatch` is independent of the Windows backend, which lets the core tests exercise ordering, 10,000 simulated submissions and cancellation without a printer. `WindowsPrint.ps1` uses the actual Windows driver and compares saved/printed page counts for all four modes; its print-to-file override is only supplied by the internal check runner. Physical printer behaviour and a full 10,000-document Office conversion/print run have not been tested.
 
 API references: [Windows PDF page rendering](https://learn.microsoft.com/en-us/uwp/api/windows.data.pdf.pdfpage.rendertostreamasync), [PrintTicket to DEVMODE](https://learn.microsoft.com/en-us/dotnet/api/system.printing.interop.printticketconverter.convertprinttickettodevmode), and [GDI print functions](https://learn.microsoft.com/en-us/windows/win32/printdocs/gdi-print-api-functions).
+
+## Group inference
+
+The app matches configured group names against the filename first, then up to three containing folders. Matching ignores letter case and treats spaces, underscores and hyphens as separators. It matches whole names, prefers `Sea Scouts` over the less specific `Scouts`, and leaves conflicting matches blank for you to choose. Editing the group list refreshes automatic suggestions without replacing your manual choices. You can always select or type a group yourself. School year and custom group assignments are retained separately when you toggle between them.
+
+## Page previews and link handling
+
+Page previews use Windows’ built-in PDF renderer in the background. The app creates cards only around the visible area and keeps at most 48 small thumbnails in its cache. Saving uses the PDF page content, not the preview images, so text and vector drawings remain intact. Web/email links are preserved; internal links follow retained pages in their new positions. Links whose destination page was removed are omitted. When a destination has duplicates, links use the first retained copy; a page’s link to itself stays with that copy.
+
+## Image preparation and compression
+
+Camera orientation is corrected, tagged images are converted to sRGB, and transparent areas receive a white background.
+
+For large input images, the app limits the long edge to 2,480 pixels and chooses the smaller of PNG and high-quality JPEG storage. For oversized PDFs, image compression considers the largest placement of each image on the page and uses four bounded quality settings. Unsupported colour spaces, transparency masks and custom image decoding are left untouched to avoid changing their appearance. Existing RGB ICC profiles are retained.
+
+## Stored preferences
+
+Only mode, naming, newsletter frequency, custom groups, issue label, term, week, output-folder and add-to-other-modes preferences are stored in `%LOCALAPPDATA%\Newsletter Combiner\settings.json`. The original folder name is retained so upgrading to GoodSort PDF keeps your existing preferences.
+
+The Print after saving checkbox is not persisted and starts unchecked on each app launch.
